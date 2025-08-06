@@ -14,7 +14,7 @@ import team.dovecot.metropolitan.core.common.block.BlockTicketingServer;
 import team.dovecot.metropolitan.core.common.block.entity.BlockEntityTicketingServer;
 
 public final class MetroBlocks {
-    public static final Block TICKETING_SERVER = register("ticketing_server", new BlockTicketingServer(BlockBehaviour.Properties.of(Material.METAL).strength(8.0f, 3600000.0F)));
+    public static final Block TICKETING_SERVER = register("ticketing_server", new BlockTicketingServer(BlockBehaviour.Properties.of(Material.METAL).strength(8.0f, 3600000.0F).noOcclusion()));
 
     private static Block register(String id, Block block) {
         return Registry.register(Registry.BLOCK, new ResourceLocation(Constants.MOD_ID, id), block);
