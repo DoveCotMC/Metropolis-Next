@@ -1,6 +1,7 @@
 package team.dovecot.metropolitan.core.common.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -9,6 +10,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -29,14 +31,15 @@ public class BlockTicketingServer extends BaseEntityBlock {
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-        return world.getBlockState(pos.above()).isAir();
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        BlockPos blockPos2 = pos.below();
+        BlockState blockState2 = level.getBlockState(blockPos2);
+        return state.getValue(HALF) == DoubleBlockHalf.LOWER ? blockState2.isFaceSturdy(level, blockPos2, Direction.UP) : blockState2.is(this);
     }
 
     @Override
     public void setPlacedBy(Level level, BlockPos blockPos, BlockState blockState, @Nullable LivingEntity livingEntity, ItemStack itemStack) {
-        super.setPlacedBy(level, blockPos, blockState.setValue(HALF, DoubleBlockHalf.LOWER), livingEntity, itemStack);
-        level.setBlockAndUpdate(blockPos.above(), blockState.setValue(HALF, DoubleBlockHalf.UPPER));
+        level.setBlock(blockPos.above(), blockState.setValue(HALF, DoubleBlockHalf.UPPER), 3);
     }
 
     @Nullable
