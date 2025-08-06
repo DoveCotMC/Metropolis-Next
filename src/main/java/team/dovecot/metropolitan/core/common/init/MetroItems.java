@@ -6,7 +6,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import team.dovecot.metropolitan.Constants;
 
-public class MetroItems {
+public final class MetroItems {
     public static final Item TICKETING_SERVER = register("ticketing_server", new BlockItem(MetroBlocks.TICKETING_SERVER, new Item.Properties()));
 
     private static Item register(String id, Item item) {
