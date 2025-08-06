@@ -18,6 +18,9 @@
 		"main": [
 			"team.dovecot.metropolitan.core.common.Metropolis"
 		],
+		"client": [
+			"team.dovecot.metropolitan.core.client.MetropolisClient"
+		],
 		"fabric-datagen": [
 			"team.dovecot.metropolitan.core.data.MetropolisDataGen"
 		]
